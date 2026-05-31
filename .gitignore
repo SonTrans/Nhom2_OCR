@@ -1,0 +1,23 @@
+# system
+.cache/
+.idea/
+__pycache__/
+*.pyc
+.venv
+
+# LLM models (QUAN TRỌNG)
+model/
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+nextjs/
+dowload_model.py
+main.py
+.env
+data/
+receipts_dataset/
+data_images.xlsx
+data.rar
