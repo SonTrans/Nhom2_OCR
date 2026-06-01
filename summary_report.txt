@@ -1,0 +1,454 @@
+=== KẾT QUẢ ẢNH: 1010-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+03
+
+--------------------
+
+[TESSERACT]:
+Friendly Red s
+6f Windham
+
+22 Haverhill Rd
+Windham NH
+603-437-7251
+
+Server: iancar lo
+104/1
+
+Buests: 2
+Reprint #: 1
+
+Eadillac Margarita (2 814.00)
+Patron 5ï]ver
+
+Maryland Prab akes
+
+Phicken Uaprese
+
+Chix Parm Sanduich
+
+Bud Light (2 93. 70)
+
+Subtotal
+Tax
+
+Total
+BaTarnnwee Duie@œ
+
+doin us on
+Facebook &
+
+g.. ca S5 set
+
+07/21/2018
+12:56 PM
+10076
+
+28. 00
+
+14.00
+12.00
+10. 00
+7.40
+
+71.40
+6.43
+
+tài tế)
+. n3
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1020-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+0300000099
+
+--------------------
+
+[TESSERACT]:
+_ Ìa le
+/71 Neuark Avenue
+dersey Eïty Local, NJ 07308
+(201) 804-1772
+
+Server: Eom Station: 6
+
+Tin #: 80110 jm¬..: Tn
+
+me hs “¬. 0uesfs: 6
+
+1 0a] Fry ` ng
+
+) Paneer Butter Masala bạo
+Ẹ ồ
+
+, Deccan $pecial Biryani Hu8
+à ni
+
+SUB T07AL :
+Tax 1:
+
+F..c... `
+18X TIÐS:
+
+ii:
+
+7/28/2019 10:58:49 PM
+XPEKKEOEKEKKKEkEEEEEREEFEPHEEkFEÐkEkEkk
+No raturns or cance]]ations aocepted onoe 0rder
+is plaoed. Exchange onÌy for faulty items 0NLY.
+
+XEEKEEEEPREEEEEEIEREHLREEEEEREEEEEEFEEEE
+
+lIIIll
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1026-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+
+
+--------------------
+
+[TESSERACT]:
+
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1037-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+1
+
+--------------------
+
+[TESSERACT]:
+St0re #121
+Pạmtla Elrees
+
+EVerett, WẠ
+(425)710-027g
+
+3/16/2013
+
+3:41:24 PM
+Order; 177447
+
+Server: Tameka J
+1 PARTY PK 18-22 139.00
+CHOW METN
+FRTED RTICE
+FRTED/C METIN
+0RANGE CKN
+GRTLL TERTYAKT CKN
+PEPPERC0RN SHRTMP 12.00
+SubTota] 151.00
+TAX 13.89
+Intal lũI.89
+fash 1.1)
+thang #.H
+
+XXXXXXXXXXXXXKXXXXXOCCKXXXXKXXXX X X XS
+XXXXXXXXXXXXXXXXXXXXXXXXXXXOKKKKXXXSK
+
+FIEt LE TIM
+I£ (WIE TÚ 0PINI0M
+
+€al] 1-888-51-PANDA(72632) or
+Visit pandaexpress.com/guest
+
+xxx x> >
+xxx x>< ~
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1061-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+1
+
+--------------------
+
+[TESSERACT]:
+hÌl1's
+Puente H†11s #25
+17588 Castleton 3t
+of Industry,DA 31748
+15/2018
+09/15) ĐH
+12
+
+0r3er...[yp¿... Dịne. 1n
+
+TRIPLE DIPPER
+CHIOKEN WAFFLES4
+
+Suotota]
+
+Tota] Tax
+Tota]
+
+Balance Due
+
+* 3ratuity 8u1de
+
+J5*= 93.96
+
+18% = $4.75
+$5,27
+$5.80
+
+Want free hips and 3alsa
+or a drink, eery visi†?
+/Ñ
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1080-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+El
+
+--------------------
+
+[TESSERACT]:
+NGewark Buffet
+35201 Newark B]vd. # Newark CA 94560
+510-818- 113i
+hịttp: //Auu.newarkbuffe† .com
+
+08:25 PM 08/29/2019
+
+Server: Tìm-11
+
+qTY NAME (/P PRICE
+2 MEEKEND DINNER BUFFET 19.38 39.98
+1 WEEKEND DINNER KIDS (3-5) 7.88
+1 WEEKEND DINNER KIDS (6-10)
+
+10.00
+
+4 S00A DRIMK 1.88. 7.88
+1 MEEKEND SENIUR DINNER 18.08
+SUBT0TAL : 84.02
+
+Tax(8. 75Ä) : 8.20
+
+T0TA: — 32.22
+IIIIIIllllllll
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1100-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+E
+
+--------------------
+
+[TESSERACT]:
+Sư .„.
+18725 Stơny Plain Rd
+h FdRonton AB TBP 4A9.
+
+¡ — S†0feR: 388. Telg; 780-4]4-gapa
+
+Â©lCoR 1o a]] day broakfast
+ Kc Dona]d's.
+
+K1 03/10/2018 07:39:12 PM
+
+(TY TIEM T0TAL
+1 Delivery
+1,10 MeNuggets,EVM.
+1 Barbeaue 8auce,
+] Barbeque Sauoe.
+1L Poke
+1 M French Frles.
+1 HM Brữhs S-Ƒry Yog
+1 §nogpy
+1 HH Apple dulce
+1 6 Fookias
+8 Œec fhip [oœte
+1 Baked Apple Pie
+1L French Fries
+1 L Tced Tea
+
+92
+
+Subfo†a]
+05T
+Take-ut Tota]
+
+CREDIT SALES - McDelivery.
+(hange
+
+63T #: 120807082
+
+SILE 804dfgld2
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1113-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+1
+
+--------------------
+
+[TESSERACT]:
+;Golden Panda Buffet
+
+14428 Ramona Blvd. #70
+
+Baldwin Park, CA 91706
+
+Tel: 626-337-5666
+
+Station:1 6/02/2018 04:18:31 PM
+Cashier: 010
+
+Invoice #68554 T# hot food
+Achilt Dinner 2 23.98
+Soda ø 2.38
+=—=_......
+Subtotal 21.36
+Tax 2.60
+Grand Total 29.96
+
+Amount Tenderedl 29.96
+Debit Card sale 29.96
+_—____—_—_—————-—
+
+Thank you very much.
+
+Order # 162
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1127-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+AL
+
+--------------------
+
+[TESSERACT]:
+: PETZZA PIÚT
+kế DTINE_TN
+
+Ticket_ #OO1ØØ
+
+Ttem Coumt: 3
+
+ENTERED_BY TABLE #UEST
+MAURI0E 56 2
+030835 10/25/2018 6:30 PM
+01 1 $FivelU 12.48 Ẳ
+Hand †0ss
+Cheese
+Pepper0nÏ
+02 1 $FiveLU 1.89 bế
+Bone 0UT
+§ar ]oPart Ẫ
+03 1 PiTpher 13.50
+DosEqu]s
+00UP0N (F6) 10.18 Ệ
+Subtota] 23.50
+Service Fee 0.34
+SALE8 TAX 2.32
+
+Balanoe Due 28.16
+
+========================================
+
+=== KẾT QUẢ ẢNH: 1137-receipt.jpg ===
+
+[PADDLEOCR]:
+Lỗi PaddleOCR: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118)
+
+
+--------------------
+
+[VIETOCR]:
+5
+
+--------------------
+
+[TESSERACT]:
+lauj leriaki
+27000 Marine Âve #103
+Redondo Beach, 0A 90278
+
+(310) 973-3500
+
+Ÿerver: Annie
+
+0rder #; 188479
+Úus†oner Nane;
+
+Ñuests; †
+)` 8HTL) ‹‹
+
+1 3a]mon P]ate
+1 Extra S| lở
+
+========================================
+
