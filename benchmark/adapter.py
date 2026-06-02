@@ -109,6 +109,8 @@ def normalize_text(text):
     return text
 
 def Regex_to_dict(raw_text):
+    if type(raw_text) is dict:
+        return raw_text
 
     normalized_text = normalize_text(raw_text)
 
@@ -149,6 +151,8 @@ def Regex_to_dict(raw_text):
     return result
 
 def LayoutLM_to_dict(layoutlm_entities):
+    if type(layoutlm_entities) is dict:
+        return layoutlm_entities
 
     result = {
         "store": None,
@@ -187,6 +191,8 @@ def LayoutLM_to_dict(layoutlm_entities):
 
 
 def VLM_to_dict(vlm_json):
+    if type(vlm_json) is dict:
+        return vlm_json
 
     normalized_json = {
         normalize_text(k): v
