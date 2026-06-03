@@ -13,9 +13,9 @@ model/
 *.pt
 *.pth
 
-nextjs/
+frontend/nextjs/
 dowload_model.py
-main.py
+test.py
 .env
 data/
 receipts_dataset/
