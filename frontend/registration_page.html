@@ -1,0 +1,242 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sign Up | InvoScanner OCR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#6d7a77",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-surface-variant": "#3d4947",
+                        "primary-container": "#008378",
+                        "inverse-primary": "#6bd8cb",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary-fixed-dim": "#bfc8ce",
+                        "secondary-fixed-dim": "#89ceff",
+                        "primary-fixed": "#89f5e7",
+                        "on-tertiary-fixed": "#141d21",
+                        "surface-container-high": "#dce9ff",
+                        "surface": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#006591",
+                        "inverse-surface": "#213145",
+                        "on-surface": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-container": "#e5eeff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#f4fffc",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "tertiary": "#545d62",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006a61",
+                        "secondary-container": "#39b8fd",
+                        "on-primary-fixed-variant": "#005049",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00201d",
+                        "tertiary-fixed": "#dbe4ea",
+                        "on-secondary-container": "#004666",
+                        "outline-variant": "#bcc9c6",
+                        "on-background": "#0b1c30",
+                        "primary": "#00685f",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3f484d",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "on-tertiary-container": "#fbfdff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#6d767b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "background": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "4rem",
+                        "gutter": "1.5rem",
+                        "container-padding-mobile": "1.25rem",
+                        "container-padding-desktop": "2.5rem",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "mono-code": ["JetBrains Mono"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "mono-code": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .teal-gradient {
+            background: linear-gradient(135deg, #008378 0%, #00685f 100%);
+        }
+        .scanning-animation {
+            animation: scan 3s ease-in-out infinite;
+        }
+        @keyframes scan {
+            0%, 100% { transform: translateY(-20px); opacity: 0.5; }
+            50% { transform: translateY(20px); opacity: 1; }
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #008378;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<main class="min-h-screen flex flex-col md:flex-row">
+<!-- Left Column: Visual Brand (40%) -->
+<section class="teal-gradient w-full md:w-[40%] min-h-[300px] md:min-h-screen p-container-padding-desktop flex flex-col relative overflow-hidden">
+<!-- Brand Logo -->
+<div class="z-10 flex items-center gap-3">
+<img alt="InvoScanner Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLtO8Y2A5iu0PKTXxFrb4Is6qQYOlH6pC8LsGSzTsf2in6XGfsP-MBrVpqROhO0btAk9lcIsM6Pni1WS9jHcYSb4cPZOyKuvoy8HDlk_oVJ7m3PhY3H8jbXfiWz44CDcOVvEdqNEDMJj-PeNqlibYhPQuYXw-1WiK6lVibmlSwa8d_d5PRy8bjznZbqvO1a37hk9b-FEVupzOHmO7FQTU0Rc35AHLFKAIk6A_85JqHGS334mu6xfV9ayCg">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">InvoScanner</span>
+</div>
+<!-- Central Scanning Illustration -->
+<div class="flex-grow flex flex-col items-center justify-center z-10 space-y-8">
+<div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
+<!-- Scanning Laser Effect -->
+<div class="absolute w-full h-[2px] bg-primary-fixed scanning-animation shadow-[0_0_15px_#89f5e7] z-20"></div>
+<img alt="OCR Scanning Illustration" class="w-full h-full object-contain filter drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLsPRbmRcxbMd4IGIztLxCf_sIS6-3NBlNUyODO7WQMcps7w-wpqWolZ6mouJ8lxRjy16e1yWTWjZNIzKXj02-N-oHk7gOIKYT8HK4GyHaEIvO8sC1F8rWTY9QP0M0gCQNkTpX9DdJEV9rtI2k-sQUW7Ml6Uwzx65aoYiaCszFyPjBm_w9-gxxPTtTEaj4af4f4vGeAYqd5OWOLyPmOrx7XwyJETSRSLeDs-5tqPJs4OC9adwZHlkVVxQcs">
+</div>
+<div class="text-center max-w-xs px-4">
+<h2 class="font-headline-md text-headline-md text-on-primary mb-2">Instant OCR Extraction</h2>
+<p class="font-body-sm text-body-sm text-on-primary-container opacity-90">Upload any invoice and watch our neural engine extract line items with 99.9% precision.</p>
+</div>
+</div>
+<!-- Background Decorative Elements -->
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-primary-container rounded-full blur-[100px] opacity-30 -mb-20 -mr-20"></div>
+<div class="absolute top-1/4 left-0 w-48 h-48 bg-white rounded-full blur-[120px] opacity-10 -ml-20"></div>
+</section>
+<!-- Right Column: Form (60%) -->
+<section class="w-full md:w-[60%] flex items-center justify-center p-container-padding-mobile md:p-container-padding-desktop bg-surface-container-lowest">
+<div class="w-full max-w-md space-y-8 animate-in fade-in duration-700">
+<!-- Header -->
+<header class="text-center md:text-left">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Create Account</h1>
+<p class="font-body-md text-body-md text-outline">Join InvoScanner to simplify your workflow</p>
+</header>
+<!-- Form -->
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant block ml-1" for="name">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all focus:border-primary input-focus-ring" id="name" placeholder="John Doe" type="text">
+</div>
+</div>
+<!-- Email Address -->
+
+<!-- Password -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant block ml-1" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock</span>
+<input class="w-full pl-12 pr-12 py-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all focus:border-primary input-focus-ring" id="password" oninput="updateStrength(this.value)" placeholder="••••••••" type="password">
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<!-- Strength Indicator -->
+<div class="mt-2 flex gap-1 h-1 w-full rounded-full bg-surface-container overflow-hidden">
+<div class="h-full w-0 transition-all duration-500 rounded-full" id="strength-bar"></div>
+</div>
+<span class="text-[10px] font-label-sm uppercase tracking-wider text-outline" id="strength-text">Password Strength</span>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant block ml-1" for="confirm-password">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">lock_reset</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all focus:border-primary input-focus-ring" id="confirm-password" placeholder="••••••••" type="password">
+</div>
+</div>
+<!-- Terms Checkbox -->
+
+<!-- Submit Button -->
+<button class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-xl shadow-lg shadow-primary/20 hover:bg-primary-container hover:shadow-xl transition-all active:scale-[0.98]" type="submit">
+                        Create Account
+                    </button>
+</form>
+<!-- Footer Link -->
+<footer class="text-center pt-4">
+<p class="font-body-md text-body-md text-outline">
+                        Already have an account?
+                        <a class="text-primary font-bold hover:underline ml-1" href="#">Log In</a>
+</p>
+</footer>
+</div>
+</section>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        function updateStrength(val) {
+            const bar = document.getElementById('strength-bar');
+            const text = document.getElementById('strength-text');
+
+            if (val.length === 0) {
+                bar.style.width = '0%';
+                text.innerText = 'Password Strength';
+                text.className = 'text-[10px] font-label-sm uppercase tracking-wider text-outline';
+            } else if (val.length < 6) {
+                bar.style.width = '33%';
+                bar.className = 'h-full bg-error transition-all duration-500 rounded-full';
+                text.innerText = 'Weak';
+                text.className = 'text-[10px] font-label-sm uppercase tracking-wider text-error';
+            } else if (val.length < 10) {
+                bar.style.width = '66%';
+                bar.className = 'h-full bg-secondary-container transition-all duration-500 rounded-full';
+                text.innerText = 'Medium';
+                text.className = 'text-[10px] font-label-sm uppercase tracking-wider text-secondary';
+            } else {
+                bar.style.width = '100%';
+                bar.className = 'h-full bg-primary-container transition-all duration-500 rounded-full';
+                text.innerText = 'Strong';
+                text.className = 'text-[10px] font-label-sm uppercase tracking-wider text-primary';
+            }
+        }
+    </script>
+
+
+
+
+</body></html>
