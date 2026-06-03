@@ -13,7 +13,6 @@ conn = psycopg2.connect(
 )
 
 cursor = conn.cursor()
-
 sql = """
 
 CREATE TABLE users (
@@ -36,6 +35,7 @@ CREATE TABLE budgets (
     end_date DATE,
 
     budget DECIMAL(12,2),
+    total_amount DECIMAL(12,2),
 
     CONSTRAINT fk_budget_user
         FOREIGN KEY(user_id)
