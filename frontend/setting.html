@@ -1,0 +1,372 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Settings - ValidatOCR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#00201d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-fixed-variant": "#3f484d",
+                        "on-surface-variant": "#3d4947",
+                        "primary-fixed": "#89f5e7",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "primary": "#00685f",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "secondary": "#006591",
+                        "surface-tint": "#006a61",
+                        "primary-container": "#008378",
+                        "tertiary-fixed": "#dbe4ea",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed": "#c9e6ff",
+                        "inverse-primary": "#6bd8cb",
+                        "on-primary-container": "#f4fffc",
+                        "outline-variant": "#bcc9c6",
+                        "on-secondary-fixed-variant": "#004c6e",
+                        "secondary-fixed-dim": "#89ceff",
+                        "outline": "#6d7a77",
+                        "on-secondary-container": "#004666",
+                        "surface": "#f8f9ff",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005049",
+                        "surface-container-highest": "#d3e4fe",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#bfc8ce",
+                        "tertiary-container": "#6d767b",
+                        "on-tertiary-fixed": "#141d21",
+                        "background": "#f8f9ff",
+                        "tertiary": "#545d62",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-surface": "#0b1c30",
+                        "secondary-container": "#39b8fd",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary-container": "#fbfdff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-desktop": "2.5rem",
+                        "base": "8px",
+                        "gutter": "1.5rem",
+                        "section-gap": "4rem",
+                        "container-padding-mobile": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "mono-code": ["JetBrains Mono"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "mono-code": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #00685f;
+        }
+        .toggle-checkbox:checked + .toggle-label::before {
+            transform: translateX(20px);
+        }
+        .toggle-label::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden h-screen flex">
+<!-- SideNavBar -->
+<aside class="w-64 h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col p-4 gap-2 z-50">
+<div class="flex items-center gap-3 px-3 py-4 mb-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">qr_code_2</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">ValidatOCR</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Enterprise OCR</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<div class="group flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-tertiary/10 transition-all rounded-lg cursor-pointer font-label-md text-label-md">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="">Dashboard</span>
+</div>
+<div class="group flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-tertiary/10 transition-all rounded-lg cursor-pointer font-label-md text-label-md">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="">Queue</span>
+</div>
+<div class="group flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-tertiary/10 transition-all rounded-lg cursor-pointer font-label-md text-label-md">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="">Archive</span>
+</div>
+<div class="group flex items-center gap-3 px-3 py-3 text-primary font-bold bg-secondary-container/20 rounded-lg cursor-pointer font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="">Settings</span>
+</div>
+</nav>
+<div class="mt-auto flex flex-col gap-1 border-t border-outline-variant/30 pt-4">
+<button class="mb-4 w-full bg-primary text-on-primary py-3 rounded-xl font-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+                Upload Invoice
+            </button>
+<div class="group flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-tertiary/10 transition-all rounded-lg cursor-pointer font-label-md text-label-md">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="">Support</span>
+</div>
+<div class="group flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-tertiary/10 transition-all rounded-lg cursor-pointer font-label-md text-label-md">
+<span class="material-symbols-outlined">logout</span>
+<span class="">Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 h-full flex flex-col relative overflow-hidden">
+<!-- TopAppBar -->
+<header class="h-16 sticky top-0 bg-surface/80 backdrop-blur-md flex items-center justify-between px-container-padding-desktop z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Settings</h2>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<span class="text-on-surface-variant font-label-md">Billing &amp; Budgeting</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="font-label-md text-on-surface leading-tight">Alex Sterling</p>
+<p class="font-label-sm text-on-surface-variant text-[11px]">Finance Admin</p>
+</div>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a person with a clean-cut appearance, wearing a dark blue blazer. The background is a soft-focus office interior with natural window lighting, creating a bright and airy modern aesthetic. The lighting is high-key and flattering, emphasizing a corporate but approachable mood consistent with a financial tech application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgC-Clqesr4jYFUYYrizUf_aWI36EeP6aGM1XErJ7tSWHyhY5Lw3g34y_siIXZ49n5x-QmNfqgMliVXJn1WHREoQui1RcpTNS7AKJzKNjcwST45fP0rxWwldqgHsLOhfm9oxiApxI-cG_6-5lrplXnS-q_KNaKfc07Sq-vOy-bMIE_St7CPQAMD89UqmGqPuBYnQVDHqUaGLs3HncO-VlKVYprJ11boZtCPrJxX43_qNiBHSQKhpa45_RWuL7swp6cqzcDIT8ZmgM">
+</div>
+</div>
+</header>
+<!-- Scrollable Body Content -->
+<div class="flex-1 p-container-padding-desktop overflow-y-auto scrollbar-hide grid grid-cols-12 gap-gutter bg-background">
+<!-- Left Column: Main Settings (Col 1-8) -->
+<div class="space-y-gutter col-span-12">
+<!-- Section 1: Total Monthly Budget -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Total Monthly Budget</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Set your enterprise-wide spending limit for OCR processing.</p>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px]">payments</span>
+</div>
+<div class="flex items-end gap-4">
+<div class="flex-1 relative">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant font-display-lg text-[32px] opacity-40">$</span>
+<input class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary focus:ring-0 rounded-2xl pl-12 pr-6 py-6 font-display-lg text-display-lg text-primary placeholder:text-outline-variant transition-all outline-none" type="number" value="25000">
+</div>
+<button class="bg-primary text-on-primary px-8 py-6 rounded-2xl font-label-md hover:brightness-110 active:scale-95 transition-all">
+                            Save Limit
+                        </button>
+</div>
+</section>
+<!-- Section 2: Budget Alerts -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10">
+<h3 class="font-label-md text-label-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">notifications_active</span>
+                        BUDGET ALERTS
+                    </h3>
+<div class="grid grid-cols-3 gap-6">
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-primary">50%</span>
+<div class="relative inline-block w-10 h-5">
+<input checked="" class="toggle-checkbox hidden" id="alert-50" type="checkbox">
+<label class="toggle-label block w-10 h-5 bg-outline-variant rounded-full cursor-pointer transition-all relative" for="alert-50"></label>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Usage notification</p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-primary">80%</span>
+<div class="relative inline-block w-10 h-5">
+<input checked="" class="toggle-checkbox hidden" id="alert-80" type="checkbox">
+<label class="toggle-label block w-10 h-5 bg-outline-variant rounded-full cursor-pointer transition-all relative" for="alert-80"></label>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Critical usage warning</p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-error">100%</span>
+<div class="relative inline-block w-10 h-5">
+<input class="toggle-checkbox hidden" id="alert-100" type="checkbox">
+<label class="toggle-label block w-10 h-5 bg-outline-variant rounded-full cursor-pointer transition-all relative" for="alert-100"></label>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Over-limit auto-pause</p>
+</div>
+</div>
+</section>
+<!-- Section 3: Budget by Month -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Historical &amp; Future Allocations</h3>
+<div class="flex gap-2">
+<button class="text-primary font-label-sm text-label-sm px-3 py-1 rounded-lg hover:bg-primary/10 transition-colors">Import CSV</button>
+<button class="text-primary font-label-sm text-label-sm px-3 py-1 rounded-lg hover:bg-primary/10 transition-colors">Bulk Edit</button>
+</div>
+</div>
+<div class="w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/30">
+<th class="py-4 font-label-md text-label-md text-on-surface-variant">MONTH</th>
+<th class="py-4 font-label-md text-label-md text-on-surface-variant">CONFIDENCE LEVEL</th>
+<th class="py-4 font-label-md text-label-md text-on-surface-variant text-right">BUDGET LIMIT</th>
+<th class="py-4 font-label-md text-label-md text-on-surface-variant text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 font-label-md text-on-surface">September 2024</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#00C853]"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">High Confidence</span>
+</div>
+</td>
+<td class="py-4 text-right font-mono-code text-mono-code text-primary">$25,000.00</td>
+<td class="py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors cursor-pointer">edit</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 font-label-md text-on-surface">October 2024</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#00C853]"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">High Confidence</span>
+</div>
+</td>
+<td class="py-4 text-right font-mono-code text-mono-code text-primary">$28,000.00</td>
+<td class="py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors cursor-pointer">edit</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 font-label-md text-on-surface">November 2024</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#FFAB00]"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Medium (Peak Season)</span>
+</div>
+</td>
+<td class="py-4 text-right font-mono-code text-mono-code text-primary">$45,000.00</td>
+<td class="py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors cursor-pointer">edit</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-4 font-label-md text-on-surface">December 2024</td>
+<td class="py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#FF5252]"></span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Low (Holiday Variance)</span>
+</div>
+</td>
+<td class="py-4 text-right font-mono-code text-mono-code text-primary">$32,000.00</td>
+<td class="py-4 text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors cursor-pointer">edit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Budget Insights (Col 9-12) -->
+
+</div>
+<!-- Sticky Footer Action -->
+<footer class="h-16 bg-surface-container-lowest/80 backdrop-blur-md border-t border-outline-variant/20 px-container-padding-desktop flex items-center justify-end gap-4">
+<button class="px-6 py-2 text-on-surface-variant font-label-md hover:bg-surface-container transition-colors rounded-lg">Reset Defaults</button>
+<button class="px-8 py-2 bg-primary text-on-primary font-label-md rounded-lg shadow-sm hover:shadow-md active:scale-95 transition-all">Save Changes</button>
+</footer>
+</main>
+<script>
+        // Simple micro-interaction for numeric input focus
+        const budgetInput = document.querySelector('input[type="number"]');
+        budgetInput.addEventListener('focus', () => {
+            budgetInput.parentElement.classList.add('scale-[1.01]');
+        });
+        budgetInput.addEventListener('blur', () => {
+            budgetInput.parentElement.classList.remove('scale-[1.01]');
+        });
+
+        // Toggle logic for the custom switches
+        document.querySelectorAll('.toggle-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const parent = e.target.closest('div').parentElement.parentElement;
+                if(e.target.checked) {
+                    parent.classList.add('bg-primary/5');
+                } else {
+                    parent.classList.remove('bg-primary/5');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>
