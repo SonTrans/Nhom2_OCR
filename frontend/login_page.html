@@ -179,7 +179,7 @@
 <footer class="text-center" style="opacity: 1; transform: translateY(0px); transition: 0.5s ease-out;">
 <p class="font-body-sm text-body-sm text-on-surface-variant">
                         Don't have an account?
-                        <a class="text-primary font-bold hover:underline ml-1" href="#">Sign Up</a>
+                        <a class="text-primary font-bold hover:underline ml-1" href="registration_page.html">Sign Up</a>
 </p>
 </footer>
 </div>
@@ -205,7 +205,41 @@
             }
         }
 
-        // Simple animation entry for form
+        async function handleLoginSubmit(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                alert('Vui lòng nhập username và password.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+                if (response.ok && result?.user_id) {
+                    localStorage.setItem('receipt_user_id', result.user_id);
+                    window.location.href = 'archieve.html';
+                } else {
+                    alert('Đăng nhập thất bại. Vui lòng kiểm tra thông tin.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Không thể kết nối tới backend. Vui lòng kiểm tra server.');
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', handleLoginSubmit);
+
         document.addEventListener('DOMContentLoaded', () => {
             const formElements = document.querySelectorAll('#loginForm > div, header, footer');
             formElements.forEach((el, index) => {

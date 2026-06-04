@@ -169,53 +169,20 @@
 <!-- Main Content -->
 <main class="ml-64 p-gutter max-w-[1600px]">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-<!-- Left Column: Category Budget Settings -->
+<!-- Left Column: Budget History -->
 <section class="lg:col-span-7 flex flex-col gap-6">
 <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-outline-variant">
-<div class="flex justify-between items-center mb-8">
-<h2 class="font-headline-md text-headline-md text-on-surface">Monthly Budget Limits</h2>
-<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-sm">Active Period: Oct 2024</span>
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Budget History</h2>
+<p class="text-body-sm text-on-surface-variant">Danh sách budget thực tế được tải từ backend.</p>
 </div>
-<div class="flex flex-col gap-6">
-<!-- Food Category -->
-<div class="group">
-<div class="flex items-center mb-3 justify-end"><span class="mr-auto font-label-md text-on-surface">October 2024 (Current)</span><div class="flex items-center gap-4"><span class="font-body-sm text-on-surface-variant italic">Spent: $425 of $500</span><div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-sm">$</span><input class="w-24 pl-6 pr-3 py-1 bg-surface-container border border-outline-variant rounded text-right font-mono-code text-body-sm focus:ring-2 focus:ring-primary outline-none" type="text" value="500"></div></div></div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[85%] rounded-full progress-bar-glow"></div>
+<button id="refreshBudgetsButton" class="px-4 py-3 bg-primary text-on-primary rounded-full font-semibold hover:bg-primary-container transition">Tải lại</button>
 </div>
-</div>
-<!-- Transport Category -->
-<div class="group">
-<div class="flex items-center mb-3 justify-end"><span class="mr-auto font-label-md text-on-surface">September 2024</span><div class="flex items-center gap-4"><span class="font-body-sm text-on-surface-variant italic">Spent: $120 of $300</span><div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-sm">$</span><input class="w-24 pl-6 pr-3 py-1 bg-surface-container border border-outline-variant rounded text-right font-mono-code text-body-sm focus:ring-2 focus:ring-primary outline-none" type="text" value="300"></div></div></div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[40%] rounded-full"></div>
+<div id="budgetListContainer" class="space-y-4">
+<div class="text-body-sm text-on-surface-variant">Đang tải dữ liệu budget...</div>
 </div>
 </div>
-<!-- Shopping Category (Over Budget) -->
-<div class="group">
-<div class="flex items-center mb-3 justify-end"><span class="mr-auto font-label-md text-on-surface">August 2024</span><div class="flex items-center gap-4"><span class="font-body-sm text-error font-semibold italic">Spent: $650 of $500</span><div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-sm">$</span><input class="w-24 pl-6 pr-3 py-1 bg-surface-container border border-outline-variant rounded text-right font-mono-code text-body-sm focus:ring-2 focus:ring-primary outline-none" type="text" value="500"></div></div></div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-error h-full w-full rounded-full animate-pulse"></div>
-</div>
-</div>
-<!-- Bills Category -->
-<div class="group">
-<div class="flex items-center mb-3 justify-end"><span class="mr-auto font-label-md text-on-surface">July 2024</span><div class="flex items-center gap-4"><span class="font-body-sm text-on-surface-variant italic">Spent: $890 of $1200</span><div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-sm">$</span><input class="w-24 pl-6 pr-3 py-1 bg-surface-container border border-outline-variant rounded text-right font-mono-code text-body-sm focus:ring-2 focus:ring-primary outline-none" type="text" value="1200"></div></div></div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[74%] rounded-full"></div>
-</div>
-</div>
-<!-- Other Category -->
-<div class="group">
-<div class="flex items-center mb-3 justify-end"><span class="mr-auto font-label-md text-on-surface">June 2024</span><div class="flex items-center gap-4"><span class="font-body-sm text-on-surface-variant italic">Spent: $45 of $200</span><div class="relative"><span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-sm">$</span><input class="w-24 pl-6 pr-3 py-1 bg-surface-container border border-outline-variant rounded text-right font-mono-code text-body-sm focus:ring-2 focus:ring-primary outline-none" type="text" value="200"></div></div></div>
-<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[22%] rounded-full"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Descriptive Visual Card -->
-
 </section>
 <!-- Right Column: Reporting & Exports -->
 <section class="lg:col-span-5 flex flex-col gap-6">
@@ -312,4 +279,63 @@
 
 
 
+<script>
+    const dashboardUserId = localStorage.getItem('receipt_user_id');
+    if (!dashboardUserId) {
+        window.location.href = 'login_page.html';
+    }
+
+    const budgetListContainer = document.getElementById('budgetListContainer');
+    const refreshBudgetsButton = document.getElementById('refreshBudgetsButton');
+
+    function formatCurrency(value) {
+        if (value === null || value === undefined || value === '') return 'N/A';
+        const number = Number(value);
+        if (Number.isNaN(number)) return value;
+        return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    }
+
+    async function renderBudgets() {
+        if (!budgetListContainer) return;
+        budgetListContainer.innerHTML = '<div class="text-body-sm text-on-surface-variant">Đang tải dữ liệu budget...</div>';
+
+        try {
+            const response = await fetch(`/api/budget/get-budgets/${dashboardUserId}`);
+            if (!response.ok) {
+                throw new Error('Lỗi khi tải budgets');
+            }
+
+            const budgets = await response.json();
+            if (!Array.isArray(budgets) || budgets.length === 0) {
+                budgetListContainer.innerHTML = '<div class="text-body-sm text-on-surface-variant">Chưa có budget nào. Vui lòng tạo budget trước.</div>';
+                return;
+            }
+
+            budgetListContainer.innerHTML = budgets.map(budget => `
+                <div class="rounded-3xl border border-outline-variant bg-background p-4 shadow-sm">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <p class="font-label-md text-on-surface">Budget ID #${budget.id}</p>
+                            <p class="text-body-sm text-on-surface-variant">Start: ${budget.start_date || 'N/A'}</p>
+                            <p class="text-body-sm text-on-surface-variant">End: ${budget.end_date || 'N/A'}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-headline-sm text-headline-sm text-primary">${formatCurrency(budget.budget)}</p>
+                            <p class="text-body-sm text-on-surface-variant">Spent: ${formatCurrency(budget.total_amount)}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        } catch (error) {
+            budgetListContainer.innerHTML = `<div class="text-body-sm text-error">Không thể tải budget. Vui lòng thử lại.</div>`;
+            console.error(error);
+        }
+    }
+
+    if (refreshBudgetsButton) {
+        refreshBudgetsButton.addEventListener('click', renderBudgets);
+    }
+
+    renderBudgets();
+</script>
 </body></html>
