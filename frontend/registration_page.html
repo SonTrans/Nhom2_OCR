@@ -155,7 +155,7 @@
 <p class="font-body-md text-body-md text-outline">Join InvoScanner to simplify your workflow</p>
 </header>
 <!-- Form -->
-<form class="space-y-6" onsubmit="event.preventDefault();">
+<form id="signupForm" class="space-y-6" onsubmit="event.preventDefault();">
 <!-- Full Name -->
 <div class="space-y-2">
 <label class="font-label-sm text-label-sm text-on-surface-variant block ml-1" for="name">Full Name</label>
@@ -201,7 +201,7 @@
 <footer class="text-center pt-4">
 <p class="font-body-md text-body-md text-outline">
                         Already have an account?
-                        <a class="text-primary font-bold hover:underline ml-1" href="#">Log In</a>
+                        <a class="text-primary font-bold hover:underline ml-1" href="login_page.html">Log In</a>
 </p>
 </footer>
 </div>
@@ -209,6 +209,45 @@
 </main>
 <!-- Micro-interaction Script -->
 <script>
+        async function handleSignupSubmit(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('name').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!username || !password || !confirmPassword) {
+                alert('Vui lòng điền đầy đủ thông tin.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Mật khẩu và xác nhận mật khẩu không khớp.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                const result = await response.json();
+
+                if (response.ok && result?.user_id) {
+                    alert('Đăng ký thành công. Chuyển sang trang đăng nhập.');
+                    window.location.href = 'login_page.html';
+                } else {
+                    alert(result?.message || 'Đăng ký thất bại. Vui lòng thử lại.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Không thể kết nối tới backend. Vui lòng kiểm tra server.');
+            }
+        }
+
         function updateStrength(val) {
             const bar = document.getElementById('strength-bar');
             const text = document.getElementById('strength-text');
@@ -234,6 +273,8 @@
                 text.className = 'text-[10px] font-label-sm uppercase tracking-wider text-primary';
             }
         }
+
+        document.getElementById('signupForm').addEventListener('submit', handleSignupSubmit);
     </script>
 
 

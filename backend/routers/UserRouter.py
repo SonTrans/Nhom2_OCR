@@ -15,7 +15,7 @@ def signup(user: UserCreate):
         "user_id": user_id
     }
 
-@router.get("/login")
+@router.post("/login")
 def login(user: UserCreate):
     user_id = login_service(user.username, user.password)
     if user_id is None:

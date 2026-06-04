@@ -1,7 +1,5 @@
 from backend.database import connection
 
-from backend.database import connection
-
 def create_budget_repo(user_id, start_date, end_date, budget, total_amount):
 
     conn, cursor = connection.get_connection()
