@@ -1,31 +1,29 @@
 import os
-from backend.service.tesseract_service import TesseractService
+import pytesseract
+from PIL import Image
 
+# 1. Cấu hình cứng đường dẫn Tesseract trên Windows
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-def test_scan_all():
-    # 1. Khởi tạo duy nhất đối tượng Model Service
-    ocr_service = TesseractService()
+IMAGE_DIR = "test_images"
+valid_extensions = ('.png', '.jpg', '.jpeg', '.bmp', '.webp')
 
-    IMAGE_DIR = "test_images"
-    valid_extensions = ('.png', '.jpg', '.jpeg', '.bmp', '.webp')
+# 2. Lấy danh sách toàn bộ file ảnh từ folder test_images
+images = [f for f in os.listdir(IMAGE_DIR) if f.lower().endswith(valid_extensions)]
 
-    # 2. Lấy danh sách tất cả các file ảnh trong thư mục
-    images = [f for f in os.listdir(IMAGE_DIR) if f.lower().endswith(valid_extensions)]
+print(f"--- Bắt đầu quét thẳng bằng Tesseract: {len(images)} ảnh ---\n")
 
-    print(f"🔥 Bắt đầu quét tổng số: {len(images)} ảnh...\n")
+# 3. Vòng lặp mở ảnh và quét chữ song ngữ
+for img_name in images:
+    img_path = os.path.join(IMAGE_DIR, img_name)
+    print(f"📸 [QUÉT ẢNH]: {img_name}")
 
-    # 3. Vòng lặp gọi model quét từng ảnh một
-    for img_name in images:
-        img_path = os.path.join(IMAGE_DIR, img_name)
-        print(f"=== ĐANG QUÉT: {img_name} ===")
+    # Gọi thẳng mô hình xử lý
+    img = Image.open(img_path)
+    img_gray = img.convert("L")  # Chuyển ảnh xám để tối ưu chính tả
+    raw_text = pytesseract.image_to_string(img_gray, lang="vie+eng", config="--psm 3")
 
-        # Gọi model bốc chữ
-        result = ocr_service.extract_text(img_path)
+    # In kết quả thô ra Terminal
+    print(raw_text.strip())
+    print("\n" + "=" * 50 + "\n")
 
-        # In thẳng kết quả ra Terminal
-        print(result)
-        print("\n" + "=" * 50 + "\n")
-
-
-if __name__ == "__main__":
-    test_scan_all()
