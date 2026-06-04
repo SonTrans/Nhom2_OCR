@@ -214,6 +214,23 @@
                     </button>
 </div>
 </div>
+<!-- Upload Panel -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant p-6">
+    <div class="flex flex-col gap-4">
+        <div id="receiptDropZone" class="min-h-[260px] border-2 border-dashed border-primary/50 rounded-3xl bg-surface p-8 flex flex-col items-center justify-center text-center transition hover:border-primary hover:bg-surface-container-high cursor-pointer">
+            <span class="material-symbols-outlined text-[48px] text-primary mb-4">cloud_upload</span>
+            <p class="font-headline-sm text-headline-sm text-on-surface mb-2">Kéo thả hoặc chọn ảnh hóa đơn</p>
+            <p class="text-body-sm text-on-surface-variant">Nhấp vào đây hoặc kéo ảnh vào vùng này để tải hóa đơn lên.</p>
+            <button id="chooseFileButton" type="button" class="mt-6 inline-flex items-center gap-2 px-5 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-container transition">Chọn file</button>
+        </div>
+        <input id="receiptFileInput" type="file" accept="image/*" class="hidden">
+        <div class="flex flex-wrap gap-3">
+            <button id="uploadReceiptButton" type="button" class="px-5 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-container transition">Tải lên</button>
+            <button id="budgetButton" type="button" class="px-5 py-3 bg-secondary-container text-on-secondary-container rounded-full font-medium hover:bg-secondary transition">Budget</button>
+        </div>
+        <div id="uploadStatus" class="mt-4 text-body-sm text-on-surface-variant">Kết quả tải lên sẽ hiển thị ở đây.</div>
+    </div>
+</section>
 <!-- Filter Bar -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant/20">
 <div class="flex flex-col gap-1">
@@ -366,5 +383,95 @@
             searchInput.parentElement.classList.remove('scale-[1.02]');
         });
     }
+</script>
+<script>
+    const receiptUserId = localStorage.getItem('receipt_user_id');
+    if (!receiptUserId) {
+        window.location.href = 'login_page.html';
+    }
+
+    const receiptDropZone = document.getElementById('receiptDropZone');
+    const receiptFileInput = document.getElementById('receiptFileInput');
+    const chooseFileButton = document.getElementById('chooseFileButton');
+    const uploadReceiptButton = document.getElementById('uploadReceiptButton');
+    const budgetButton = document.getElementById('budgetButton');
+    const uploadStatus = document.getElementById('uploadStatus');
+    let selectedReceiptFile = null;
+
+    function updateUploadStatus(message, isError = false) {
+        uploadStatus.innerText = message;
+        uploadStatus.className = isError ? 'mt-4 text-body-sm text-error' : 'mt-4 text-body-sm text-on-surface-variant';
+    }
+
+    function setDragActive(active) {
+        if (active) {
+            receiptDropZone.classList.add('border-primary', 'bg-surface-container-high');
+        } else {
+            receiptDropZone.classList.remove('border-primary', 'bg-surface-container-high');
+        }
+    }
+
+    receiptDropZone.addEventListener('click', () => receiptFileInput.click());
+    chooseFileButton.addEventListener('click', () => receiptFileInput.click());
+
+    receiptDropZone.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        setDragActive(true);
+    });
+
+    receiptDropZone.addEventListener('dragleave', (event) => {
+        event.preventDefault();
+        setDragActive(false);
+    });
+
+    receiptDropZone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        setDragActive(false);
+        const file = event.dataTransfer.files?.[0];
+        if (file) {
+            selectedReceiptFile = file;
+            updateUploadStatus(`Đã chọn: ${file.name}`);
+        }
+    });
+
+    receiptFileInput.addEventListener('change', (event) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            selectedReceiptFile = file;
+            updateUploadStatus(`Đã chọn: ${file.name}`);
+        }
+    });
+
+    uploadReceiptButton.addEventListener('click', async () => {
+        if (!selectedReceiptFile) {
+            updateUploadStatus('Vui lòng chọn hoặc kéo thả file hình ảnh.', true);
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', selectedReceiptFile);
+
+        try {
+            updateUploadStatus('Đang tải lên...');
+            const response = await fetch('/api/receipt/upload-image', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Lỗi khi gọi API upload ảnh');
+            }
+
+            const result = await response.json();
+            updateUploadStatus(`Kết quả: ${JSON.stringify(result)}`);
+        } catch (error) {
+            console.error(error);
+            updateUploadStatus('Không thể kết nối tới backend upload ảnh. Vui lòng kiểm tra server.', true);
+        }
+    });
+
+    budgetButton.addEventListener('click', () => {
+        window.location.href = 'dashboard.html';
+    });
 </script>
 </body></html>

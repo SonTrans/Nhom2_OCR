@@ -8,7 +8,8 @@ def map_budget(row):
         "user_id": row[1],
         "start_date": row[2],
         "end_date": row[3],
-        "budget": row[4]
+        "budget": row[4],
+        "total_amount": row[5]
     }
 
 def get_budget_by_user_id_service(user_id):
@@ -28,7 +29,7 @@ def create_budget_service(budget: BudgetCreate):
         start_date=today,
         end_date=end_of_month,
         budget=budget.budget,
-        total_amount=budget.total_amount or 0
+        total_amount=0
     )
 
     return budget_id
