@@ -43,7 +43,7 @@ class ReceiptKIE:
 
     def __init__(
         self,
-        api_key: str | None = None,
+        api_key: str or None = None,
         model: str = DEFAULT_MODEL,
         max_tokens: int = DEFAULT_MAX_TOKENS,
     ):
