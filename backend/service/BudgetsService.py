@@ -19,6 +19,32 @@ def get_budget_by_user_id_service(user_id):
     return [map_budget(b) for b in budgets]
 
 
+def get_current_budget_for_user_service(user_id):
+    from datetime import date
+
+    today = date.today()
+    budget = get_current_budget_by_user_id(user_id, today)
+    return map_budget(budget) if budget else None
+
+
+def add_amount_to_budget_service(user_id, amount, confirmed_at=None):
+    from datetime import date, datetime
+
+    if confirmed_at is None:
+        confirmed_at = datetime.now()
+
+    if isinstance(confirmed_at, date) and not isinstance(confirmed_at, datetime):
+        effective_date = confirmed_at
+    else:
+        effective_date = confirmed_at.date()
+
+    updated_budgets = update_budget_totals_by_date_range(user_id, amount, effective_date)
+    if not updated_budgets:
+        raise ValueError("Không tìm thấy budget hiện tại cho người dùng.")
+
+    return [map_budget(b) for b in updated_budgets]
+
+
 def create_budget_service(budget: BudgetCreate):
 
     today = date.today()

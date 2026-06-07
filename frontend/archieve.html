@@ -223,6 +223,27 @@
             <p class="text-body-sm text-on-surface-variant">Nhấp vào đây hoặc kéo ảnh vào vùng này để tải hóa đơn lên.</p>
             <button id="chooseFileButton" type="button" class="mt-6 inline-flex items-center gap-2 px-5 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-container transition">Chọn file</button>
         </div>
+        <div id="receiptPreviewContainer" class="hidden rounded-3xl border border-outline-variant bg-white p-4">
+            <div class="flex flex-col gap-3 lg:flex-row lg:items-start">
+                <div class="lg:w-1/2">
+                    <p class="text-body-sm text-on-surface-variant">Ảnh đã chọn</p>
+                    <div class="mt-3 overflow-hidden rounded-3xl border border-outline-variant bg-surface h-[260px] flex items-center justify-center">
+                        <img id="receiptPreviewImage" src="" alt="Receipt preview" class="h-full w-full object-contain cursor-zoom-in" />
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex flex-col gap-3">
+                    <div>
+                        <p class="text-label-sm text-on-surface-variant">Tên file</p>
+                        <div id="previewFileName" class="mt-2 rounded-2xl border border-outline-variant bg-surface p-3 text-body-sm font-medium text-on-surface"></div>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button id="changeFileButton" type="button" class="inline-flex items-center gap-2 px-5 py-3 bg-secondary-container text-on-secondary-container rounded-full font-medium hover:bg-secondary transition">Chọn file khác</button>
+                        <button id="removeFileButton" type="button" class="inline-flex items-center gap-2 px-5 py-3 bg-surface-container-high text-on-surface rounded-full font-medium hover:bg-surface-container transition">Xóa ảnh</button>
+                    </div>
+                    <p class="text-body-sm text-on-surface-variant">Nhấp vào ảnh để phóng to và kiểm tra nội dung.</p>
+                </div>
+            </div>
+        </div>
         <input id="receiptFileInput" type="file" accept="image/*" class="hidden">
         <div class="flex flex-wrap gap-3">
             <button id="uploadReceiptButton" type="button" class="px-5 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-container transition">Tải lên</button>
@@ -231,6 +252,55 @@
         <div id="uploadStatus" class="mt-4 text-body-sm text-on-surface-variant">Kết quả tải lên sẽ hiển thị ở đây.</div>
     </div>
 </section>
+
+<div id="receiptConfirmModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 p-4">
+    <div class="w-full max-w-xl rounded-3xl bg-white p-6 shadow-2xl">
+        <div class="flex items-center justify-between mb-4">
+            <div>
+                <h3 class="font-headline-md text-headline-md text-on-surface">Xác nhận thông tin hóa đơn</h3>
+                <p class="text-body-sm text-on-surface-variant">Sửa thông tin nếu cần trước khi gán vào budget hiện tại.</p>
+            </div>
+            <button id="closeReceiptConfirmButton" class="text-on-surface-variant hover:text-primary">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div class="space-y-4">
+                <label class="block">
+                    <span class="text-label-sm text-on-surface-variant">Store name</span>
+                    <input id="receiptStoreInput" type="text" class="mt-2 w-full border border-outline-variant rounded-2xl px-4 py-3 bg-background text-body-sm focus:ring-2 focus:ring-primary/20 outline-none" />
+                </label>
+                <label class="block">
+                    <span class="text-label-sm text-on-surface-variant">Date</span>
+                    <input id="receiptDateInput" type="text" class="mt-2 w-full border border-outline-variant rounded-2xl px-4 py-3 bg-background text-body-sm focus:ring-2 focus:ring-primary/20 outline-none" />
+                </label>
+                <label class="block">
+                    <span class="text-label-sm text-on-surface-variant">Total</span>
+                    <input id="receiptTotalInput" type="number" step="0.01" class="mt-2 w-full border border-outline-variant rounded-2xl px-4 py-3 bg-background text-body-sm focus:ring-2 focus:ring-primary/20 outline-none" />
+                </label>
+            </div>
+            <div class="space-y-4">
+                <span class="text-label-sm text-on-surface-variant">Ảnh hóa đơn</span>
+                <div class="rounded-3xl border border-outline-variant overflow-hidden bg-surface h-[360px] flex items-center justify-center">
+                    <img id="receiptConfirmImage" src="" alt="Receipt image preview" class="h-full w-full object-contain cursor-zoom-in" />
+                </div>
+                <p class="text-body-sm text-on-surface-variant">Nhấp vào ảnh để phóng to và kiểm tra nội dung.</p>
+            </div>
+        </div>
+        <div class="mt-6 flex justify-end gap-3">
+            <button id="cancelReceiptConfirmButton" class="px-5 py-3 bg-surface-container-high text-on-surface rounded-full font-medium hover:bg-surface-container">Hủy</button>
+            <button id="confirmReceiptButton" class="px-5 py-3 bg-primary text-on-primary rounded-full font-medium hover:bg-primary-container">Xác nhận</button>
+        </div>
+    </div>
+</div>
+<div id="imageZoomOverlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4">
+    <div class="relative w-full max-w-5xl max-h-[90vh]">
+        <button id="closeImageZoomButton" class="absolute top-4 right-4 z-10 inline-flex items-center justify-center rounded-full bg-white/90 p-3 text-on-surface shadow-lg">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <img id="zoomedReceiptImage" src="" alt="Zoomed receipt image" class="h-full w-full object-contain rounded-3xl" />
+    </div>
+</div>
 <!-- Filter Bar -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant/20">
 <div class="flex flex-col gap-1">
@@ -396,7 +466,25 @@
     const uploadReceiptButton = document.getElementById('uploadReceiptButton');
     const budgetButton = document.getElementById('budgetButton');
     const uploadStatus = document.getElementById('uploadStatus');
+    const receiptPreviewContainer = document.getElementById('receiptPreviewContainer');
+    const receiptPreviewImage = document.getElementById('receiptPreviewImage');
+    const previewFileName = document.getElementById('previewFileName');
+    const changeFileButton = document.getElementById('changeFileButton');
+    const removeFileButton = document.getElementById('removeFileButton');
+    const receiptConfirmModal = document.getElementById('receiptConfirmModal');
+    const receiptStoreInput = document.getElementById('receiptStoreInput');
+    const receiptDateInput = document.getElementById('receiptDateInput');
+    const receiptTotalInput = document.getElementById('receiptTotalInput');
+    const receiptConfirmImage = document.getElementById('receiptConfirmImage');
+    const imageZoomOverlay = document.getElementById('imageZoomOverlay');
+    const zoomedReceiptImage = document.getElementById('zoomedReceiptImage');
+    const closeImageZoomButton = document.getElementById('closeImageZoomButton');
+    const confirmReceiptButton = document.getElementById('confirmReceiptButton');
+    const cancelReceiptConfirmButton = document.getElementById('cancelReceiptConfirmButton');
+    const closeReceiptConfirmButton = document.getElementById('closeReceiptConfirmButton');
     let selectedReceiptFile = null;
+    let currentReceiptData = null;
+    let currentReceiptImageUrl = null;
 
     function updateUploadStatus(message, isError = false) {
         uploadStatus.innerText = message;
@@ -411,34 +499,115 @@
         }
     }
 
+    function displayReceiptPreview(file) {
+        if (!file) {
+            updateUploadStatus('Không có file hợp lệ để hiển thị.', true);
+            return;
+        }
+
+        if (currentReceiptImageUrl) {
+            URL.revokeObjectURL(currentReceiptImageUrl);
+        }
+        currentReceiptImageUrl = URL.createObjectURL(file);
+        selectedReceiptFile = file;
+        receiptPreviewImage.src = currentReceiptImageUrl;
+        previewFileName.innerText = file.name;
+        receiptDropZone.classList.add('hidden');
+        receiptPreviewContainer.classList.remove('hidden');
+        updateUploadStatus(`Ảnh đã sẵn sàng: ${file.name}`);
+    }
+
+    function resetReceiptSelection() {
+        if (currentReceiptImageUrl) {
+            URL.revokeObjectURL(currentReceiptImageUrl);
+            currentReceiptImageUrl = null;
+        }
+        selectedReceiptFile = null;
+        receiptFileInput.value = '';
+        receiptPreviewImage.src = '';
+        previewFileName.innerText = '';
+        receiptPreviewContainer.classList.add('hidden');
+        receiptDropZone.classList.remove('hidden');
+        updateUploadStatus('Kéo thả hoặc chọn ảnh hóa đơn.');
+    }
+
+    function openImageZoom(src) {
+        if (!src) {
+            return;
+        }
+        zoomedReceiptImage.src = src;
+        imageZoomOverlay.classList.remove('hidden');
+        imageZoomOverlay.classList.add('flex');
+    }
+
+    function closeImageZoom() {
+        imageZoomOverlay.classList.add('hidden');
+        imageZoomOverlay.classList.remove('flex');
+    }
+
+    function openReceiptModal(data) {
+        currentReceiptData = data;
+        receiptStoreInput.value = data.company || '';
+        receiptDateInput.value = data.date || '';
+        receiptTotalInput.value = data.total != null ? data.total : '';
+        if (currentReceiptImageUrl) {
+            receiptConfirmImage.src = currentReceiptImageUrl;
+        }
+        receiptConfirmModal.classList.remove('hidden');
+        receiptConfirmModal.classList.add('flex');
+    }
+
+    function closeReceiptModal() {
+        receiptConfirmModal.classList.add('hidden');
+        receiptConfirmModal.classList.remove('flex');
+        currentReceiptData = null;
+    }
+
     receiptDropZone.addEventListener('click', () => receiptFileInput.click());
     chooseFileButton.addEventListener('click', () => receiptFileInput.click());
 
+    document.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+
+    document.addEventListener('drop', (event) => {
+        event.preventDefault();
+    });
+
+    receiptDropZone.addEventListener('dragenter', (event) => {
+        event.preventDefault();
+        setDragActive(true);
+    });
+
     receiptDropZone.addEventListener('dragover', (event) => {
         event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
         setDragActive(true);
     });
 
     receiptDropZone.addEventListener('dragleave', (event) => {
         event.preventDefault();
-        setDragActive(false);
+        if (!receiptDropZone.contains(event.relatedTarget)) {
+            setDragActive(false);
+        }
     });
 
     receiptDropZone.addEventListener('drop', (event) => {
         event.preventDefault();
+        event.stopPropagation();
         setDragActive(false);
-        const file = event.dataTransfer.files?.[0];
+        const file = event.dataTransfer.files && event.dataTransfer.files[0];
         if (file) {
-            selectedReceiptFile = file;
-            updateUploadStatus(`Đã chọn: ${file.name}`);
+            displayReceiptPreview(file);
+        } else {
+            updateUploadStatus('Kéo thả không hợp lệ. Vui lòng thử lại với ảnh.', true);
         }
     });
 
     receiptFileInput.addEventListener('change', (event) => {
-        const file = event.target.files?.[0];
+        const file = event.target.files && event.target.files[0];
         if (file) {
-            selectedReceiptFile = file;
-            updateUploadStatus(`Đã chọn: ${file.name}`);
+            displayReceiptPreview(file);
         }
     });
 
@@ -463,10 +632,70 @@
             }
 
             const result = await response.json();
-            updateUploadStatus(`Kết quả: ${JSON.stringify(result)}`);
+            if (!result.receipt) {
+                updateUploadStatus('Không nhận được dữ liệu hóa đơn từ backend.', true);
+                return;
+            }
+
+            if (result.ocr_error) {
+                updateUploadStatus('OCR không thể đọc ảnh. Bạn có thể sửa tay thông tin.', true);
+            } else {
+                updateUploadStatus('Đã trích xuất dữ liệu. Vui lòng xác nhận.');
+            }
+            openReceiptModal(result.receipt);
         } catch (error) {
             console.error(error);
             updateUploadStatus('Không thể kết nối tới backend upload ảnh. Vui lòng kiểm tra server.', true);
+        }
+    });
+
+    confirmReceiptButton.addEventListener('click', async () => {
+        const totalValue = parseFloat(receiptTotalInput.value);
+        if (Number.isNaN(totalValue)) {
+            updateUploadStatus('Vui lòng nhập tổng tiền hợp lệ.', true);
+            return;
+        }
+
+        try {
+            updateUploadStatus('Đang cập nhật budget...');
+            const response = await fetch('/api/receipt/assign-budget', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: parseInt(receiptUserId, 10),
+                    receipt_total: totalValue,
+                    confirmed_at: new Date().toISOString()
+                })
+            });
+
+            const result = await response.json();
+            if (!response.ok) {
+                throw new Error(result.detail || 'Lỗi khi gán vào budget');
+            }
+
+            const updatedBudgets = result.budgets || (result.budget ? [result.budget] : []);
+            const firstBudget = updatedBudgets[0];
+            const suffix = updatedBudgets.length > 1 ? ` (${updatedBudgets.length} budgets)` : '';
+            updateUploadStatus(`Budget đã cập nhật${suffix}: ${firstBudget ? firstBudget.total_amount : 'n/a'}`);
+            closeReceiptModal();
+        } catch (error) {
+            console.error(error);
+            updateUploadStatus(error.message || 'Không thể cập nhật budget.', true);
+        }
+    });
+
+    cancelReceiptConfirmButton.addEventListener('click', closeReceiptModal);
+    closeReceiptConfirmButton.addEventListener('click', closeReceiptModal);
+    changeFileButton.addEventListener('click', () => receiptFileInput.click());
+    removeFileButton.addEventListener('click', resetReceiptSelection);
+    receiptPreviewImage.addEventListener('click', () => openImageZoom(currentReceiptImageUrl));
+    receiptConfirmImage.addEventListener('click', () => openImageZoom(currentReceiptImageUrl));
+    closeImageZoomButton.addEventListener('click', closeImageZoom);
+    imageZoomOverlay.addEventListener('click', (event) => {
+        if (event.target === imageZoomOverlay) {
+            closeImageZoom();
         }
     });
 
