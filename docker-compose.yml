@@ -1,0 +1,50 @@
+# Khai báo phiên bản của cú pháp docker-compose
+version: '3.8'
+
+services:
+  # Service thứ nhất: Ứng dụng Backend của bạn (FastAPI)
+  app:
+    # build: Chỉ định thư mục chứa Dockerfile (dấu chấm '.' nghĩa là thư mục hiện tại)
+    build: .
+    # Đặt tên cho container để dễ quản lý và dễ nhìn khi gọi lệnh `docker ps`
+    container_name: ocr_app
+    # port: Ánh xạ cổng (Cổng máy tính của bạn : Cổng bên trong container)
+    ports:
+      - "8000:8000"
+    # environment: Truyền các biến môi trường vào trong container lúc chạy
+    environment:
+      # Truyền biến môi trường chỉ định host của database là 'db' (tên service dưới đây)
+      - POSTGRES_HOST=db
+      # Truyền mật khẩu database. Nếu không có biến này ở host, mặc định lấy 'postgres'
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      # Truyền khoá API Groq (tự động lấy từ file .env của máy bạn)
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    # depends_on: Đảm bảo service 'db' phải được khởi chạy trước service 'app'
+    depends_on:
+      - db
+
+  # Service thứ hai: Cơ sở dữ liệu PostgreSQL
+  db:
+    # Sử dụng image chính thức từ Docker Hub: postgres bản 15 alpine (nhỏ gọn)
+    image: postgres:15-alpine
+    container_name: ocr_db
+    # Các biến cấu hình cho PostgreSQL khi khởi tạo lần đầu tiên
+    environment:
+      # Tên người dùng quản trị cơ sở dữ liệu (Mặc định là postgres)
+      - POSTGRES_USER=postgres
+      # Mật khẩu người dùng (Giống với password của app)
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      # Tên cơ sở dữ liệu sẽ tự động được tạo ra lúc container khởi động (Lưu ý: Không tạo bảng, chỉ tạo db)
+      - POSTGRES_DB=receipt_ocr
+    # Mở cổng để nếu bạn dùng DataGrip/DBeaver ở máy ngoài thì vẫn có thể chui vào xem được
+    ports:
+      - "5432:5432"
+    # volumes: Lưu trữ dữ liệu vật lý (Bảo vệ dữ liệu không bị mất đi sau khi xóa container)
+    volumes:
+      # Ánh xạ volume 'postgres_data' xuống đường dẫn lưu trữ data mặc định của Postgres
+      - postgres_data:/var/lib/postgresql/data
+
+# Định nghĩa các volume (ổ đĩa ảo) được sử dụng bởi các service ở trên
+volumes:
+  # Đăng ký volume postgres_data để Docker tự quản lý
+  postgres_data:

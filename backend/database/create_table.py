@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 conn = psycopg2.connect(
-    host="localhost",
+    host=os.getenv("POSTGRES_HOST", "localhost"),
     database="receipt_ocr",
     user="postgres",
     password=os.getenv("POSTGRES_PASSWORD"),

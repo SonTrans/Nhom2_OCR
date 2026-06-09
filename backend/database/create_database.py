@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # Kết nối vào database mặc định postgres
 conn = psycopg2.connect(
-    host="localhost",
+    host=os.getenv("POSTGRES_HOST", "localhost"),
     database="postgres",
     user="postgres",
     password=os.getenv("POSTGRES_PASSWORD"),
